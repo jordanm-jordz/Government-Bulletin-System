@@ -1,0 +1,81 @@
+
+
+<div style="background-color:white;color:Black;padding:20px;">
+  <h2>Welcome to the Dashboard</h2>
+  <p>Here you can view all posts that have been created on the national governments website.</p>
+  <p>If you want to Create your own post.</p>
+  <div >
+
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
+      <label for="FirstName"> &nbsp;First Name:</label><br>
+      &nbsp;  <input type="text" placeholder="Enter your Firstname" [(ngModel)]="model.FirstName" required id="FirstName" name="FirstName" #name="ngModel">
+
+        <div [hidden]="name.valid || name.pristine"
+               class="alert alert-danger">
+               First Name is required
+          </div>
+        <br>
+
+        <label for="Surname"> &nbsp;Surname:</label><br>
+        &nbsp; <input type="text" placeholder="Enter your Lastname" [(ngModel)]="model.Surname" required id="Surname" name="Surname">
+
+        <br>
+        <pre></pre>
+        &nbsp;  <textarea rows="4" cols="50" name="Description" form="usrform" [(ngModel)]="model.Description">
+      Enter text here...</textarea>
+      <p></p>
+
+      &nbsp;<button type="submit" class="button" [disabled]="!heroForm.form.valid">Submit</button>
+
+    </form>
+
+    &nbsp; <table>
+      <tr>
+        <th>FirstName</th>
+        <th>Surname</th>
+        <th>Description</th>
+        <th>Delete?</th>
+      </tr>
+      <tr *ngFor="let row of myData">
+        <td>{{ row.FirstName }}</td>
+        <td>{{ row.Surname }}</td>
+        <td>{{ row.Description }}</td>
+        <td>{{ row.ID }}</td>
+        <td><button class="button" (click)="btnDeleteClick(row.ID)">Delete</button>
+         <td> <button class="button" (click)="dowPosts(row.ID)">Save</button></td>
+      </tr>
+      </table>
+      <a type="button" class="button" href="/register-user/sign-in" (click)="logout()">Sign Out</a>
+      <a type="button" class="button" (click)="SaveFile()">Download LOG FILE</a>
+  </div>
+</div>
+
+<style>
+  ::placeholder {
+    color: #4f5fad;
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #4f5fad;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #4f5fad;
+  }
+  </style>
+<style>
+.button {
+  background-color: #1d2cb4;
+  border: none;
+  color: white;
+  padding: 20px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
